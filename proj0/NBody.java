@@ -1,5 +1,5 @@
 public class NBody {
-    public static String bgImg = "images/starfield.jpg";
+    private static String bgImg = "images/starfield.jpg";
 
     public static double readRadius(String filename) {
         In in = new In(filename);
@@ -29,16 +29,6 @@ public class NBody {
         return planets;
     }
 
-    public static void drawBackground(double universe_radius) {
-        StdDraw.setScale(-universe_radius, universe_radius);
-
-        /* Clears the drawing window. */
-        StdDraw.clear();
-        StdDraw.picture(0,0,bgImg);
-        StdDraw.show();
-    }
-
-
     public static void main(String[] args){
         double T = Double.parseDouble(args[0]);
         double dt = Double.parseDouble(args[1]);
@@ -59,7 +49,11 @@ public class NBody {
                 planets[i].update(dt, fX, fY);
             }
             // Drawing the Background
-            drawBackground(universe_radius);
+            StdDraw.setScale(-universe_radius, universe_radius);
+            StdDraw.clear();
+            StdDraw.picture(0,0,bgImg);
+            StdDraw.show();
+
             // Drawing all of the planets
             for (Planet p : planets){
                 p.draw();
