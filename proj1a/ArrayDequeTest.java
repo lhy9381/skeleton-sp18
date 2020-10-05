@@ -68,6 +68,9 @@ public class ArrayDequeTest {
 		passed = (lld1.removeFirst()=="front1") && passed;
 		passed = checkSize(29, lld1.size()) && passed;
 
+		passed = (lld1.get(15)=="front") && passed;
+		passed = (lld1.get(0)=="front1") && passed;
+
 		System.out.println("Printing out deque: ");
 		lld1.printDeque();
 		System.out.println(lld1.removeFirst());
