@@ -12,10 +12,10 @@ public class ArrayDeque<T> {
         last_ind = 0;
     }
 
-    public void resize(int capacity, Boolean is_front) {
+    private void resize(int capacity, Boolean is_front) {
         T[] new_array = (T[]) new Object[capacity];
         if (!is_front)
-            System.arraycopy(array, 0, new_array, 0, array.length);
+            System.arraycopy(array, first_ind, new_array, 0, size);
         else
             System.arraycopy(array, 0, new_array, size, size);
         array = new_array;
@@ -48,6 +48,8 @@ public class ArrayDeque<T> {
             if(last_ind==array.length-1){
                 int capacity = size * 2;
                 resize(capacity, false);
+                first_ind = 0;
+                last_ind = first_ind + size - 1;
             }
             array[last_ind + 1] = item;
             last_ind++;
@@ -86,22 +88,36 @@ public class ArrayDeque<T> {
         // Removes and returns the item at the front of the deque. If no such item exists, returns null.
         if (size==0)
             return null;
-        T first = array[first_ind];
-        array[first_ind] = null;
-        first_ind++;
-        size--;
-        return first;
+        else {
+            T first = array[first_ind];
+            array[first_ind] = null;
+            first_ind++;
+            size--;
+            if (size * 2 == array.length) {
+                resize(size, false);
+                first_ind = 0;
+                last_ind = size - 1;
+            }
+            return first;
+        }
     }
 
     public T removeLast() {
         // Removes and returns the item at the back of the deque. If no such item exists, returns null.
         if(size==0)
             return null;
-        T last = array[last_ind];
-        array[last_ind] = null;
-        last_ind--;
-        size--;
-        return last;
+        else {
+            T last = array[last_ind];
+            array[last_ind] = null;
+            last_ind--;
+            size--;
+            if (size * 2 == array.length) {
+                resize(size, false);
+                first_ind = 0;
+                last_ind = size - 1;
+            }
+            return last;
+        }
     }
 
     public T get(int index) {

@@ -40,42 +40,55 @@ public class ArrayDequeTest {
 		ArrayDeque<String> lld1 = new ArrayDeque<String>();
 
 		boolean passed = checkEmpty(true, lld1.isEmpty());
+		passed = (lld1.removeFirst()==null) && passed;
+		passed = (lld1.removeLast()==null) && passed;
 
 		for (int i=0;i<10;i++)
-			lld1.addFirst("front");
+			lld1.addLast("front");
 
 		// The && operator is the same as "and" in Python.
 		// It's a binary operator that returns true if both arguments true, and false otherwise.
 		passed = checkSize(10, lld1.size()) && passed;
 		passed = checkEmpty(false, lld1.isEmpty()) && passed;
 
-		lld1.addLast("middle");
+		lld1.addFirst("middle");
 		passed = checkSize(11, lld1.size()) && passed;
-		passed = (lld1.removeLast()=="middle") && passed;
+		passed = (lld1.removeLast()=="front") && passed;
 		passed = checkSize(10, lld1.size()) && passed;
+		passed = (lld1.removeFirst()=="middle") && passed;
+		passed = checkSize(9, lld1.size()) && passed;
 //		lld1.printDeque();
 		for (int i=0;i<10;i++)
 			lld1.addLast("back");
-		passed = checkSize(20, lld1.size()) && passed;
+		passed = checkSize(19, lld1.size()) && passed;
 
 		for (int i=0;i<7;i++)
 			lld1.addFirst("front1");
-		passed = checkSize(27, lld1.size()) && passed;
+		passed = checkSize(26, lld1.size()) && passed;
 
 		for (int i=0;i<3;i++)
 			lld1.addLast("back1");
-		passed = checkSize(30, lld1.size()) && passed;
-		passed = (lld1.removeFirst()=="front1") && passed;
 		passed = checkSize(29, lld1.size()) && passed;
+		passed = (lld1.removeFirst()=="front1") && passed;
+		passed = checkSize(28, lld1.size()) && passed;
 
-		passed = (lld1.get(15)=="front") && passed;
+		passed = (lld1.get(15)=="back") && passed;
 		passed = (lld1.get(0)=="front1") && passed;
 
 		System.out.println("Printing out deque: ");
 		lld1.printDeque();
 		System.out.println(lld1.removeFirst());
-		printTestStatus(passed);
 
+		ArrayDeque<String> lld2 = new ArrayDeque<String>();
+		for (int i = 0;i<10000;i++)
+			lld2.addLast("test123");
+//		System.out.println(Sizeof.sizeof(lld2));
+		for (int i = 0;i<9999;i++)
+			lld2.removeFirst();
+//		System.out.println(Sizeof.sizeof(lld2));
+		System.out.println("Printing out deque: ");
+		lld2.printDeque();
+		printTestStatus(passed);
 	}
 
 	/** Adds an item, then removes an item, and ensures that dll is empty afterwards. */

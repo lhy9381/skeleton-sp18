@@ -40,6 +40,8 @@ public class LinkedListDequeTest {
 		LinkedListDeque<String> lld1 = new LinkedListDeque<String>();
 
 		boolean passed = checkEmpty(true, lld1.isEmpty());
+		passed = (lld1.removeFirst()==null) && passed;
+		passed = (lld1.removeLast()==null) && passed;
 
 		for (int i=0;i<10;i++)
 			lld1.addLast("back");
@@ -58,15 +60,16 @@ public class LinkedListDequeTest {
 		passed = checkSize(14, lld1.size()) && passed;
 		passed = (lld1.get(0)=="middle") && passed;
 		passed = (lld1.get(5)=="back") && passed;
+		passed = (lld1.getRecursive(0)=="middle") && passed;
+		passed = (lld1.getRecursive(5)=="back") && passed;
 		passed = checkSize(14, lld1.size()) && passed;
 		lld1.addLast("back");
 		passed = checkSize(15, lld1.size()) && passed;
 
 		System.out.println("Printing out deque: ");
 		lld1.printDeque();
-		System.out.println(lld1.getRecursive(1));
-		printTestStatus(passed);
 
+		printTestStatus(passed);
 	}
 
 	/** Adds an item, then removes an item, and ensures that dll is empty afterwards. */

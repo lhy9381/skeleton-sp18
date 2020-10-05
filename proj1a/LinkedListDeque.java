@@ -1,5 +1,5 @@
 public class LinkedListDeque<T> {
-    public class TNode{
+    private class TNode{
         public T item;
         public TNode next;
         public TNode prev;
@@ -77,24 +77,28 @@ public class LinkedListDeque<T> {
 
     public T removeFirst() {
         // Removes and returns the item at the front of the deque. If no such item exists, returns null.
-        if(sentinel.next.item == null)
+        if(isEmpty())
             return null;
-        T first = sentinel.next.item;
-        sentinel.next = sentinel.next.next;
-        sentinel.next.prev = sentinel;
-        size--;
-        return first;
+        else {
+            T first = sentinel.next.item;
+            sentinel.next = sentinel.next.next;
+            sentinel.next.prev = sentinel;
+            size--;
+            return first;
+        }
     }
 
     public T removeLast() {
         // TODO: Removes and returns the item at the back of the deque. If no such item exists, returns null.
-        if(sentinel.prev.item == null)
+        if(isEmpty())
             return null;
-        T last = sentinel.prev.item;
-        sentinel.prev = sentinel.prev.prev;
-        sentinel.prev.next = sentinel;
-        size--;
-        return last;
+        else {
+            T last = sentinel.prev.item;
+            sentinel.prev = sentinel.prev.prev;
+            sentinel.prev.next = sentinel;
+            size--;
+            return last;
+        }
     }
 
     public T get(int index) {
@@ -113,16 +117,17 @@ public class LinkedListDeque<T> {
         return copy_first.item;
     }
 
-    public T getRecursive(TNode p, int index){
+    private T getRecursive(TNode p, int index){
         if (p.next==null)
             return null;
-        if (index==0)
-            return p.item;
         return getRecursive(p.next, index-1);
     }
 
     public T getRecursive(int index){
         // Same as get, but uses recursion.
-        return getRecursive(sentinel, index);
+        if (size==0)
+            return null;
+        else
+            return getRecursive(sentinel.next, index);
     }
 }
