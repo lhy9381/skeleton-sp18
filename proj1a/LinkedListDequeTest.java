@@ -41,20 +41,26 @@ public class LinkedListDequeTest {
 
 		boolean passed = checkEmpty(true, lld1.isEmpty());
 
+		for (int i=0;i<10;i++)
+			lld1.addLast("back");
+		passed = checkSize(10, lld1.size()) && passed;
+		passed = checkEmpty(false, lld1.isEmpty()) && passed;
 		lld1.addFirst("front");
-
+		passed = checkSize(11, lld1.size()) && passed;
+		passed = (lld1.removeFirst()=="front") && passed;
+		passed = checkSize(10, lld1.size()) && passed;
 		// The && operator is the same as "and" in Python.
 		// It's a binary operator that returns true if both arguments true, and false otherwise.
-		passed = checkSize(1, lld1.size()) && passed;
-		passed = checkEmpty(false, lld1.isEmpty()) && passed;
-
-		lld1.addFirst("middle");
-		passed = checkSize(2, lld1.size()) && passed;
-//		lld1.removeFirst();
-//		lld1.printDeque();
-
+		for (int i=0;i<5;i++)
+			lld1.addFirst("middle");
+		passed = checkSize(15, lld1.size()) && passed;
+		passed = (lld1.removeLast()=="back") && passed;
+		passed = checkSize(14, lld1.size()) && passed;
+		passed = (lld1.get(0)=="middle") && passed;
+		passed = (lld1.get(5)=="back") && passed;
+		passed = checkSize(14, lld1.size()) && passed;
 		lld1.addLast("back");
-		passed = checkSize(3, lld1.size()) && passed;
+		passed = checkSize(15, lld1.size()) && passed;
 
 		System.out.println("Printing out deque: ");
 		lld1.printDeque();

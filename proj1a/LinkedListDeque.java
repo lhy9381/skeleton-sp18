@@ -104,8 +104,8 @@ public class LinkedListDeque<T> {
         if (copy_first.next==null)
             return null;
         int counter = 0;
-        while (copy_first.next!=null){
-            if (counter == index)
+        while (copy_first.next != null){
+            if (counter == index + 1)
                 break;
             counter++;
             copy_first = copy_first.next;
