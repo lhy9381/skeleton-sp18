@@ -91,8 +91,9 @@ public class ArrayDeque<T> {
         else {
             T first = array[first_ind];
             array[first_ind] = null;
-            first_ind++;
             size--;
+            if(size>0)
+                first_ind++;
             if (size * 2 == array.length) {
                 resize(size, false);
                 first_ind = 0;
@@ -109,8 +110,9 @@ public class ArrayDeque<T> {
         else {
             T last = array[last_ind];
             array[last_ind] = null;
-            last_ind--;
             size--;
+            if(size>0)
+                last_ind--;
             if (size * 2 == array.length) {
                 resize(size, false);
                 first_ind = 0;

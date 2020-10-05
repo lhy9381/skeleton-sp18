@@ -69,6 +69,12 @@ public class LinkedListDequeTest {
 		System.out.println("Printing out deque: ");
 		lld1.printDeque();
 
+		LinkedListDeque<String> lld2 = new LinkedListDeque<String>();
+		for (int i=0;i<5;i++)
+			lld2.addFirst("front");
+		passed = (lld2.getRecursive(0)=="front") && passed;
+
+
 		printTestStatus(passed);
 	}
 

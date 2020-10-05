@@ -88,7 +88,51 @@ public class ArrayDequeTest {
 //		System.out.println(Sizeof.sizeof(lld2));
 		System.out.println("Printing out deque: ");
 		lld2.printDeque();
+
+		ArrayDeque<Integer> lld3 = new ArrayDeque<Integer>();
+//		for (int i = 0;i<100;i++)
+//			lld3.addLast(i+15);
+		lld3.addFirst(0);
+		passed = checkEmpty(false, lld3.isEmpty());
+		passed = (lld3.removeFirst()==0) && passed;
+		lld3.addFirst(2);
+		passed = checkEmpty(false, lld3.isEmpty());
+		passed = (lld3.removeFirst()==2) && passed;
+		passed = checkEmpty(true, lld3.isEmpty());
+
+		ArrayDeque<Integer> lld4 = new ArrayDeque<Integer>();
+		lld4.addLast(0);
+		passed = (lld4.removeLast()==0) && passed;
+		lld4.addLast(2);
+		passed = (lld4.removeFirst()==2) && passed;
+		passed = checkEmpty(true, lld4.isEmpty());
+		lld4.addLast(5);
+		lld4.addFirst(6);
+		lld4.addLast(7);
+		lld4.addFirst(8);
+		passed = checkEmpty(false, lld4.isEmpty());
+		passed = checkEmpty(false, lld4.isEmpty());
+		passed = (lld4.removeLast()==7) && passed;
+
 		printTestStatus(passed);
+
+		System.out.println("Running performance test.");
+
+		ArrayDeque<Integer> lld5 = new ArrayDeque<Integer>();
+		for (int i=4;i<18;i++){
+			for (int m=0; m<Math.pow(2,i);m++){
+				lld5.addLast(m);
+			}
+			long startTime = System.nanoTime();
+			for (int n=0; n<lld5.size();n++){
+				lld5.removeFirst();
+			}
+			long endTime   = System.nanoTime();
+			long totalTime = endTime - startTime;
+			System.out.println(totalTime);
+		}
+
+
 	}
 
 	/** Adds an item, then removes an item, and ensures that dll is empty afterwards. */
