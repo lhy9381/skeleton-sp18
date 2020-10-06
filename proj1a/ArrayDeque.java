@@ -41,7 +41,7 @@ public class ArrayDeque<T> {
         if (size == 0) {
             array[0] = item;
         } else {
-            if(lastInd == array.length - 1) {
+            if (lastInd == array.length - 1) {
                 int capacity = size * 2;
                 resize(capacity, false);
                 firstInd = 0;
@@ -69,8 +69,9 @@ public class ArrayDeque<T> {
             int counter = firstInd;
             while (counter < firstInd + size) {
                 String lastSpace = " ";
-                if (counter + 1 == firstInd + size)
+                if (counter + 1 == firstInd + size) {
                     lastSpace = "";
+                }
                 System.out.print(array[counter].toString() + lastSpace);
                 counter++;
             }
@@ -84,7 +85,7 @@ public class ArrayDeque<T> {
             T first = array[firstInd];
             array[firstInd] = null;
             size--;
-            if(size == 0) {
+            if (size == 0) {
                 firstInd = 0;
                 lastInd = 0;
             } else {
@@ -100,13 +101,13 @@ public class ArrayDeque<T> {
     }
 
     public T removeLast() {
-        if(size == 0) {
+        if (size == 0) {
             return null;
         } else {
             T last = array[lastInd];
             array[lastInd] = null;
             size--;
-            if(size == 0) {
+            if (size == 0) {
                 firstInd = 0;
                 lastInd = 0;
             } else {
@@ -122,7 +123,7 @@ public class ArrayDeque<T> {
     }
 
     public T get(int index) {
-        if(size == 0) {
+        if (size == 0) {
             return null;
         }
         return array[firstInd + index];
