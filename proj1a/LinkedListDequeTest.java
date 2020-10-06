@@ -1,9 +1,9 @@
 /** Performs some basic linked list tests. */
-public class LinkedListDequeTest {
+public class LinkedListDequeTest{
 	
 	/* Utility method for printing out empty checks. */
-	public static boolean checkEmpty(boolean expected, boolean actual) {
-		if (expected != actual) {
+	public static boolean checkEmpty(boolean expected, boolean actual){
+		if (expected != actual){
 			System.out.println("isEmpty() returned " + actual + ", but expected: " + expected);
 			return false;
 		}
@@ -11,8 +11,8 @@ public class LinkedListDequeTest {
 	}
 
 	/* Utility method for printing out empty checks. */
-	public static boolean checkSize(int expected, int actual) {
-		if (expected != actual) {
+	public static boolean checkSize(int expected, int actual){
+		if (expected != actual){
 			System.out.println("size() returned " + actual + ", but expected: " + expected);
 			return false;
 		}
@@ -21,10 +21,10 @@ public class LinkedListDequeTest {
 
 	/* Prints a nice message based on whether a test passed. 
 	 * The \n means newline. */
-	public static void printTestStatus(boolean passed) {
-		if (passed) {
+	public static void printTestStatus(boolean passed){
+		if (passed){
 			System.out.println("Test passed!\n");
-		} else {
+		} else{
 			System.out.println("Test failed!\n");
 		}
 	}
@@ -33,7 +33,7 @@ public class LinkedListDequeTest {
 	  * finally printing the results. 
 	  *
 	  * && is the "and" operation. */
-	public static void addIsEmptySizeTest() {
+	public static void addIsEmptySizeTest(){
 		System.out.println("Running add/isEmpty/Size test.");
 		System.out.println("Make sure to uncomment the lines below (and delete this print statement).");
 
@@ -43,25 +43,27 @@ public class LinkedListDequeTest {
 		passed = (lld1.removeFirst()==null) && passed;
 		passed = (lld1.removeLast()==null) && passed;
 
-		for (int i=0;i<10;i++)
+		for (int i=0;i<10;i++){
 			lld1.addLast("back");
+		}
 		passed = checkSize(10, lld1.size()) && passed;
 		passed = checkEmpty(false, lld1.isEmpty()) && passed;
 		lld1.addFirst("front");
 		passed = checkSize(11, lld1.size()) && passed;
-		passed = (lld1.removeFirst()=="front") && passed;
+		passed = (lld1.removeFirst().equals("front")) && passed;
 		passed = checkSize(10, lld1.size()) && passed;
 		// The && operator is the same as "and" in Python.
 		// It's a binary operator that returns true if both arguments true, and false otherwise.
-		for (int i=0;i<5;i++)
+		for (int i=0;i<5;i++) {
 			lld1.addFirst("middle");
+		}
 		passed = checkSize(15, lld1.size()) && passed;
-		passed = (lld1.removeLast()=="back") && passed;
+		passed = (lld1.removeLast().equals("back")) && passed;
 		passed = checkSize(14, lld1.size()) && passed;
-		passed = (lld1.get(0)=="middle") && passed;
-		passed = (lld1.get(5)=="back") && passed;
-		passed = (lld1.getRecursive(0)=="middle") && passed;
-		passed = (lld1.getRecursive(5)=="back") && passed;
+		passed = (lld1.get(0).equals("middle")) && passed;
+		passed = (lld1.get(5).equals("back")) && passed;
+		passed = (lld1.getRecursive(0).equals("middle")) && passed;
+		passed = (lld1.getRecursive(5).equals("back")) && passed;
 		passed = checkSize(14, lld1.size()) && passed;
 		lld1.addLast("back");
 		passed = checkSize(15, lld1.size()) && passed;
@@ -70,16 +72,15 @@ public class LinkedListDequeTest {
 		lld1.printDeque();
 
 		LinkedListDeque<String> lld2 = new LinkedListDeque<String>();
-		for (int i=0;i<5;i++)
+		for (int i=0;i<5;i++){
 			lld2.addFirst("front");
-		passed = (lld2.getRecursive(0)=="front") && passed;
-
-
+		}
+		passed = (lld2.getRecursive(0).equals("front")) && passed;
 		printTestStatus(passed);
 	}
 
 	/** Adds an item, then removes an item, and ensures that dll is empty afterwards. */
-	public static void addRemoveTest() {
+	public static void addRemoveTest(){
 
 		System.out.println("Running add/remove test.");
 
@@ -101,7 +102,7 @@ public class LinkedListDequeTest {
 
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args){
 		System.out.println("Running tests.\n");
 		addIsEmptySizeTest();
 		addRemoveTest();
