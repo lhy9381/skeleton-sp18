@@ -1,10 +1,10 @@
-public class LinkedListDeque<T>{
-    private class TNode{
+public class LinkedListDeque<T> {
+    private class TNode {
         private T item;
         private TNode next;
         private TNode prev;
 
-        public TNode(TNode l, T i, TNode n){
+        public TNode(TNode l, T i, TNode n) {
             prev = l;
             item = i;
             next = n;
@@ -14,64 +14,64 @@ public class LinkedListDeque<T>{
     private TNode sentinel;
     private int size;
 
-    public LinkedListDeque(){
+    public LinkedListDeque() {
         sentinel = new TNode(null, null, null);
         size = 0;
     }
 
-    public void addFirst(T item){
-        if(size==0){
+    public void addFirst(T item) {
+        if(size == 0) {
             sentinel.next = new TNode(sentinel, item, sentinel.next);
             sentinel.next.next = sentinel;
             sentinel.prev = sentinel.next;
-        }else{
+        } else {
             sentinel.next = new TNode(sentinel, item, sentinel.next);
             sentinel.next.next.prev = sentinel.next;
         }
         size++;
     }
 
-    public void addLast(T item){
-        if(size==0){
+    public void addLast(T item) {
+        if(size == 0) {
             sentinel.prev = new TNode(sentinel.prev, item, sentinel);
             sentinel.prev.prev = sentinel;
             sentinel.next = sentinel.prev;
-        }else{
+        } else {
             sentinel.prev = new TNode(sentinel.prev, item, sentinel);
             sentinel.prev.prev.next = sentinel.prev;
         }
         size++;
     }
 
-    public boolean isEmpty(){
-        return size==0;
+    public boolean isEmpty() {
+        return size == 0;
     }
 
-    public int size(){
+    public int size() {
         return size;
     }
 
 
-    public void printDeque(){
-        if (sentinel.next==null){
+    public void printDeque() {
+        if (sentinel.next == null) {
             System.out.print("");
-        }else{
-            TNode copy_first = sentinel.next;
-            while (copy_first.item != null){
-                String last_space = " ";
-                if (copy_first.next==null){
-                    last_space = "";
+        } else {
+            TNode copyFirst = sentinel.next;
+            while (copyFirst.item != null) {
+                String lastSpace = " ";
+                if (copyFirst.next == null) {
+                    lastSpace = "";
                 }
-                System.out.print(copy_first.item.toString()+last_space);
-                copy_first = copy_first.next;
+                System.out.print(copyFirst.item.toString() + lastSpace);
+                copyFirst = copyFirst.next;
             }
         }
     }
 
-    public T removeFirst(){
-        if(isEmpty()){
+    public T removeFirst() {
+        if(isEmpty()) {
             return null;
-        }else{
+        } else {
             T first = sentinel.next.item;
             sentinel.next = sentinel.next.next;
             sentinel.next.prev = sentinel;
@@ -80,10 +80,10 @@ public class LinkedListDeque<T>{
         }
     }
 
-    public T removeLast(){
-        if(isEmpty()){
+    public T removeLast() {
+        if(isEmpty()) {
             return null;
-        }else{
+        } else {
             T last = sentinel.prev.item;
             sentinel.prev = sentinel.prev.prev;
             sentinel.prev.next = sentinel;
@@ -92,36 +92,36 @@ public class LinkedListDeque<T>{
         }
     }
 
-    public T get(int index){
-        TNode copy_first = sentinel;
-        if (copy_first.next==null){
+    public T get(int index) {
+        TNode copyFirst = sentinel;
+        if (copyFirst.next == null) {
             return null;
         }
         int counter = 0;
-        while (copy_first.next != null){
-            if (counter==index+1)
+        while (copyFirst.next != null) {
+            if (counter == index + 1)
                 break;
             counter++;
-            copy_first = copy_first.next;
+            copyFirst = copyFirst.next;
         }
-        return copy_first.item;
+        return copyFirst.item;
     }
 
-    private T getRecursive(TNode p, int index){
-        if (p.next==null){
+    private T getRecursive(TNode p, int index) {
+        if (p.next == null) {
             return null;
         }
-        if(index==0){
+        if(index == 0) {
             return p.item;
         }
-        return getRecursive(p.next, index-1);
+        return getRecursive(p.next, index - 1);
     }
 
-    public T getRecursive(int index){
+    public T getRecursive(int index) {
         // Same as get, but uses recursion.
-        if (size==0){
+        if (size == 0) {
             return null;
-        }else{
+        } else {
             return getRecursive(sentinel.next, index);
         }
     }
