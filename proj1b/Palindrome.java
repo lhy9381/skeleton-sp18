@@ -31,7 +31,7 @@ public class Palindrome {
     }
 
     // This is the recursion implementation helper method.
-    public boolean isPalindrome(Deque<Character> wordDeque) {
+    private boolean isPalindrome(Deque<Character> wordDeque) {
         if (wordDeque.size() == 0 || wordDeque.size() == 1) {
             return true;
         }
@@ -47,7 +47,7 @@ public class Palindrome {
     }
 
     // This is the recursion implementation helper method.
-    public boolean isPalindrome(Deque<Character> wordDeque, CharacterComparator cc) {
+    private boolean isPalindrome(Deque<Character> wordDeque, CharacterComparator cc) {
         if (wordDeque.size() == 0 || wordDeque.size() == 1) {
             return true;
         }
