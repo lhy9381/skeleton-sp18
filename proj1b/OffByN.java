@@ -8,7 +8,7 @@ public class OffByN implements CharacterComparator {
 
     @Override
     public boolean equalChars(char x, char y) {
-        if(Math.abs(Character.toLowerCase(x) - Character.toLowerCase(y)) == N) {
+        if (Math.abs(Character.toLowerCase(x) - Character.toLowerCase(y)) == N) {
             return true;
         }
         return false;
