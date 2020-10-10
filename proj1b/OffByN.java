@@ -10,7 +10,7 @@ public class OffByN implements CharacterComparator {
     public boolean equalChars(char x, char y) {
         if (this.N < 0) {
             return false;
-        } else if (Math.abs(Character.toLowerCase(x) - Character.toLowerCase(y)) == this.N) {
+        } else if (Math.abs(x - y) == this.N) {
             return true;
         }
         return false;
